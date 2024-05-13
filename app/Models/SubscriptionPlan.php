@@ -11,6 +11,11 @@ class SubscriptionPlan extends Model
 
     protected $guarded = ['id'];
 
+    public function scopeApproved() {
+
+        return $this->where(['status' => APPROVED]);
+    }
+
     public static function boot() {
 
         parent::boot();

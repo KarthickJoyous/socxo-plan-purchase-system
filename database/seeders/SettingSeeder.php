@@ -14,7 +14,7 @@ class SettingSeeder extends Seeder
     {
         Setting::updateOrCreate([
             'key' => 'app_name', 
-            'value' => 'Plan Purchase System'
+            'value' => 'Socxo Plan Purchase System'
         ]);
 
         Setting::updateOrCreate([
@@ -25,6 +25,11 @@ class SettingSeeder extends Seeder
         Setting::updateOrCreate([
             'key' => 'currency', 
             'value' => '₹'
+        ]);
+
+        Setting::updateOrCreate([
+            'key' => 'copyright_content',
+            'value' => 'Socxo Solutions Private Limited. All rights reserved.'
         ]);
     }
 }

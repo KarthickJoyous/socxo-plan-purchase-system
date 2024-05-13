@@ -16,13 +16,13 @@ class UserSeeder extends Seeder
         User::updateOrCreate(['email' => "demo@demo.com"], [
             'name' => 'Demo',
             'email_verified_at' => now(),
-            'password' => '4c2[F21)'
+            'password' => Hash::make('4c2[F21)')
         ]);
 
         User::updateOrCreate(['email' => "test@demo.com"], [
             'name' => 'Test',
             'email_verified_at' => now(),
-            'password' => 'X4t5(&1('
+            'password' => Hash::make('X4t5(&1(')
         ]);
     }
 }
