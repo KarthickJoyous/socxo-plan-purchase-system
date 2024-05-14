@@ -34,6 +34,7 @@
     <div class="wrapper">
         @include('layouts.users.header')
         <div class="content container mt-5">
+            <div id="alertPlaceholder"></div>
             @include('layouts.users.notification')
             @yield('content')
         </div>
@@ -48,6 +49,19 @@
             $(`#${formId}Btn`).text(loadingText);
             $(`#${formId}Btn`).append(`<span class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>`);
 	    }
+
+        const notify = (message, type) => {
+            const wrapper = document.createElement('div')
+                wrapper.innerHTML = [
+                    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+                    `   <div>${message}</div>`,
+                    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+                    '</div>'
+                ].join('');
+            
+            alertPlaceholder.innerHTML = '';
+            alertPlaceholder.append(wrapper);
+        }
     </script>
     @yield('script')
 </body>

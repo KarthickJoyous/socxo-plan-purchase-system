@@ -16,13 +16,21 @@ class UserSeeder extends Seeder
         User::updateOrCreate(['email' => "demo@demo.com"], [
             'name' => 'Demo',
             'email_verified_at' => now(),
-            'password' => Hash::make('4c2[F21)')
+            'password' => Hash::make('4c2[F21)'),
+            'address' => "Bangaluru, KA",
+            'city' => 'Bengaluru',
+            'country' => 'India',
+            'postal_code' => '560121'
         ]);
 
         User::updateOrCreate(['email' => "test@demo.com"], [
             'name' => 'Test',
             'email_verified_at' => now(),
-            'password' => Hash::make('X4t5(&1(')
+            'password' => Hash::make('X4t5(&1('),
+            'address' => "Bangaluru, KA",
+            'city' => 'Bengaluru',
+            'country' => 'India',
+            'postal_code' => '560121'
         ]);
     }
 }

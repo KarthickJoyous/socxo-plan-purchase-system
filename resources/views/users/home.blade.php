@@ -6,7 +6,7 @@
 <h2>{{__('messages.user.subscription_plans.available_plans')}}:</h2>
 <div class="row">
     @foreach ($subscription_plans as $subscription_plan)
-        <div class="col-md-4">
+        <div class="col-md-4 pb-3">
             <div class="card">
                 <div class="card-header">
                     {{$subscription_plan->name}}

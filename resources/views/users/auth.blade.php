@@ -40,7 +40,7 @@
                         <input type="email" name="email" maxlength="50" class="form-control" id="registerEmail" required>
                     </div>
                     <div class="mb-3">
-                        <label for="registerPassword" class="form-label">{{__('messages.user.register.password')}}</label>
+                        <label for="registerPassword" class="form-label">{{__('messages.user.register.password')}}:</label>
                         <input type="password" name="password" minlength="8" maxlength="25" class="form-control" id="registerPassword" required>
                     </div>
                     <button type="submit" id="registerFormBtn" class="btn btn-primary">{{__('messages.user.register.title')}}</button>

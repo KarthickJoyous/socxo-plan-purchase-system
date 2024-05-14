@@ -143,6 +143,10 @@ return [
         // 'store'  => 'redis',
     ],
 
+    'stripe' => [
+        'publicable_key' => env('STRIPE_KEY')
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

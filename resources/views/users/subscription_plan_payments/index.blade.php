@@ -24,8 +24,8 @@
             <td>{{$transaction->subscriptionPlan->name ?: __('messages.user.common.na')}}</td>
             <td>{{(new App\Helpers\viewHelper)->formatted_amount($transaction->amount)}}</td>
             <td>
-                <span class="badge rounded-pill bg-{{$transaction->status ? 'success' : 'danger'}}">
-                    {{$transaction->status ? __('messages.user.common.success') : __('messages.user.common.failed') }}
+                <span class="badge rounded-pill bg-{{(new App\Helpers\viewHelper)->payment_status_badge_formatted($transaction->status)}}">
+                    {{(new App\Helpers\viewHelper)->payment_status_formatted($transaction->status)}}
                 </span>
             </td>
         </tr>

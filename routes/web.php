@@ -36,18 +36,18 @@ Route::group(['as' => 'user.'], function() {
 
 		Route::get('checkout/{subscription_plan}', [CheckoutController::class, 'checkoutForm'])->name('checkoutForm');
 
+		Route::post('initiate_checkout/{subscription_plan}', [CheckoutController::class, 'initiate_checkout'])->name('initiate_checkout');
+
+		Route::get('payment/{subscription_plan}', [CheckoutController::class, 'stripeForm'])->name('stripeForm');
+
 		Route::post('checkout/{subscription_plan}', [CheckoutController::class, 'checkout'])->name('checkout');
 
-		Route::resource('transactions', SubscriptionPlanPaymentController::class)->only(['index']);
+		Route::post('checkout/cancel/{subscription_plan}', [CheckoutController::class, 'checkoutCancel'])->name('checkout.cancel');
+
+		Route::resource('transactions', SubscriptionPlanPaymentController::class)->only(['index', 'show'])->scoped([
+			'transaction' => 'unique_id'
+		]);
 
 		Route::get('logout', LogoutController::class)->name('logout');
 	});
-
-	Route::get('payment-success', function() {
-		return view('users.subscription_plans.success');
-	})->name('payment_success');
-
-	Route::get('payment-cancelled', function() {
-		return view('users.subscription_plans.cancelled');
-	})->name('payment_cancelled');
 });

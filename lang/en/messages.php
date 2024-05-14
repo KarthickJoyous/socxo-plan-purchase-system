@@ -91,6 +91,7 @@ return [
 			"disabled" => "Disabled",
 			"failed" => "Failed",
 			"success" => "Success",
+			"cancelled" => "Cancelled",
 			"no_data_found" => "No Data Found."
 		],
 
@@ -115,14 +116,23 @@ return [
 			"city" => "City",
 			"country" => "Country",
 			"postal_code" => "Postal Code",
+			"card_holder_name" => "Cardholder name",
 			"submit" => "Submit Payment",
 			"webhook_event_error" => "Stripe webhook event received (:event)",
-			"not_found" => "Subscription plan not found (:api_id)"
+			"not_found" => "Subscription plan not found (:api_id)",
+			"checkout_no_payment_method_error" => "Transaction failed. Please try again.",
+			"create_subscription_failed" => "Subscription creation failed. Please try again.",
+			"cancel_subscription_failed" => "Subscription cancellation failed. Please try again.",
+			"card_information" => "Card Information",
+			"submit_btn_loading_text" => "Processing Transaction...",
+			"submit_btn" => "Pay",
+			"stripe_form_title" => "Pay with card",
 		],
 
 		"transactions" => [
 			"title" => "Transactions",
 			"price" => "Price",
+			"amount" => "Amount",
 			"payment_reference" => "Payment Reference",
 			"status" => "Payment Status",
 			"transaction_date" => "Transaction Date",
@@ -131,7 +141,11 @@ return [
 			"action" => "Action",
 			"view" => "View",
 			"details" => "Transaction Details",
-			"s_no" => "S.No"
+			"s_no" => "S.No",
+			"status_success_message" => "Payment Successful",
+			"status_cancelled_message" => "Payment Cancelled",
+			"status_failed_message" => "Payment Failed",
+			"status_success_note" => "Thank you for your payment!",
 		]
 	]
 ];

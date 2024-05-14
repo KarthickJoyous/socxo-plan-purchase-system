@@ -23,12 +23,66 @@ class viewHelper {
 	/**
 	 * To format amount with currency.
 	 * 
-	 * @param flaot $amount
+	 * @param float $amount
 	 * 
 	 * @return string
 	*/
 	function formatted_amount($amount) {
 
-		return setting('currency', '₹') . $amount;
+		return setting('currency', '₹') . ' ' .  number_format($amount, 2);
+	}
+
+	/**
+	 * To format payment status.
+	 * 
+	 * @param int $status
+	 * 
+	 * @return string
+	*/
+	function payment_status_formatted($status) {
+
+		$payment_statuses = [
+			CHECKOUT_FAILED => __('messages.user.common.failed'),
+			CHECKOUT_CANCELLED => __('messages.user.common.cancelled'),
+			CHECKOUT_SUCCESS => __('messages.user.common.success'),
+		];
+
+		return $payment_statuses[$status] ?? __('messages.user.common.na');
+	}
+
+	/**
+	 * To format payment status.
+	 * 
+	 * @param int $status
+	 * 
+	 * @return string
+	*/
+	function payment_status_badge_formatted($status) {
+
+		$payment_badges = [
+			CHECKOUT_FAILED => 'danger',
+			CHECKOUT_CANCELLED => 'warning',
+			CHECKOUT_SUCCESS => 'success',
+		];
+
+		return $payment_badges[$status] ?? 'dark';
+	}
+
+	/**
+	 * To format payment status.
+	 * 
+	 * @param int $status
+	 * 
+	 * @return string
+	*/
+	function payment_status_message_formatted($status) {
+
+		$payment_messages = [
+			CHECKOUT_FAILED => __('messages.user.transactions.status_failed_message'),
+			CHECKOUT_CANCELLED => __('messages.user.transactions.status_cancelled_message'),
+			CHECKOUT_SUCCESS => __('messages.user.transactions.status_success_message')
+		];
+
+		return $payment_messages[$status] ?? __('messages.user.common.na');
 	}
 }

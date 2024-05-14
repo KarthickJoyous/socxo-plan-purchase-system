@@ -19,7 +19,7 @@ class SubscriptionPlanPaymentController extends Controller
             $transactions = SubscriptionPlanPayment::query()
             ->with(['subscriptionPlan:id,name'])
             ->where('user_id', auth('web')->id())
-            ->latest('expire_at')
+            ->latest()
             ->paginate(10);
 
             return view('users.subscription_plan_payments.index', [

@@ -1,6 +1,6 @@
 <header class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img style="margin: 10px;" height="30px" src="@setting('app_logo')"></a>
+        <a class="navbar-brand" href="{{route('user.home')}}"><img style="margin: 10px;" height="30px" src="@setting('app_logo')"></a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 @auth('web')
@@ -20,7 +20,7 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="btn btn-primary" href="{{route('user.auth')}}">{{__('messages.user.login.email')}}</a>
+                        <a class="btn btn-primary" href="{{route('user.auth')}}">{{__('messages.user.login.title')}}</a>
                     </li>
                 @endauth
             </ul>
