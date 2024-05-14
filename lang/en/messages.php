@@ -92,7 +92,8 @@ return [
 			"failed" => "Failed",
 			"success" => "Success",
 			"cancelled" => "Cancelled",
-			"no_data_found" => "No Data Found."
+			"no_data_found" => "No Data Found.",
+			"initiated" => "Initiated"
 		],
 
 		"errors" => [
@@ -120,13 +121,16 @@ return [
 			"submit" => "Submit Payment",
 			"webhook_event_error" => "Stripe webhook event received (:event)",
 			"not_found" => "Subscription plan not found (:api_id)",
+			"model_not_found" => "Subscription plan not found",
 			"checkout_no_payment_method_error" => "Transaction failed. Please try again.",
 			"create_subscription_failed" => "Subscription creation failed. Please try again.",
 			"cancel_subscription_failed" => "Subscription cancellation failed. Please try again.",
 			"card_information" => "Card Information",
-			"submit_btn_loading_text" => "Processing Transaction...",
+			"submit_btn_loading_text" => "Processing Payment...",
 			"submit_btn" => "Pay",
 			"stripe_form_title" => "Pay with card",
+			"status_updation_error" => "Payment has been already marked as :status",
+			"session_not_found" => "No payment found."
 		],
 
 		"transactions" => [

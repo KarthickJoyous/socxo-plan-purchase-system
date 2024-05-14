@@ -42,6 +42,7 @@ class viewHelper {
 	function payment_status_formatted($status) {
 
 		$payment_statuses = [
+			CHECKOUT_INITIATED => __('messages.user.common.initiated'),
 			CHECKOUT_FAILED => __('messages.user.common.failed'),
 			CHECKOUT_CANCELLED => __('messages.user.common.cancelled'),
 			CHECKOUT_SUCCESS => __('messages.user.common.success'),

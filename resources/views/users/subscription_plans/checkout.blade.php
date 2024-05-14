@@ -19,7 +19,7 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-body">
-                <form method="POST" action="{{route('user.initiate_checkout', $subscription_plan->unique_id)}}">
+                <form method="POST" id="initiateCheckoutForm" action="{{route('user.initiate_checkout', $subscription_plan->unique_id)}}">
                     @csrf
                     <div class="form-group p-2">
                         <label for="name">{{__('messages.user.subscription_plans.name')}}</label>
@@ -45,10 +45,18 @@
                         <label for="postal_code">{{__('messages.user.subscription_plans.postal_code')}}</label>
                         <input type="text" class="form-control" minlength="3" maxlength="10" name="postal_code" id="postal_code" value="{{auth('web')->user()->postal_code}}" placeholder="Enter your postal code" required>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3 p-2">{{__('messages.user.subscription_plans.submit')}}</button>
+                    <button type="submit" id="initiateCheckoutFormBtn" class="btn btn-primary mt-3 p-2">{{__('messages.user.subscription_plans.submit')}}</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script>
+        $("#initiateCheckoutForm").on("submit", function() {
+            handleBaseFormSubmit("initiateCheckoutForm", "{{__('messages.user.subscription_plans.submit_btn_loading_text')}}");
+        });
+    </script>
 @endsection

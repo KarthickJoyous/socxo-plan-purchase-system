@@ -4,9 +4,9 @@ namespace App\Http\Controllers\User\Auth;
 
 use Exception;
 use App\Models\User;
-use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\{RedirectResponse};
 use App\Http\Requests\User\Auth\UserRegisterRequest;
 
@@ -25,7 +25,9 @@ class RegisterController extends Controller
 
             $user = DB::transaction(function() use($validated){
                 
-                $user = User::Create($validated);
+                $user = User::Create($validated + [
+                    'password' => Hash::make(request('password'))
+                ]);
 
                 throw_if(!$user, new Exception(__('messages.user.register.register_failed')));
 

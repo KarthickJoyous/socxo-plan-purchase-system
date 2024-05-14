@@ -29,7 +29,7 @@ class CheckoutController extends Controller
     }
 
     /** 
-     * To make the stripe payment & save transaction for user.
+     * To redirct to stripe checkout.
      * @param CheckoutRequest $request
      * @param string $subscription_plan
      * @return RedirectResponse
@@ -40,9 +40,32 @@ class CheckoutController extends Controller
 
         try {
 
-            $request->user()->update($request->validated());
+            $user = $request->user();
 
-            return redirect()->route('user.stripeForm', $subscription_plan->unique_id);
+            $user->update($request->validated());
+
+            $subscription_plan_payment = DB::transaction(function() use($user, $subscription_plan) {
+
+                $subscription_plan_payment = SubscriptionPlanPayment::Create([
+                    'subscription_plan_id' => $subscription_plan->id,
+                    'user_id' => $user->id,
+                    'amount' => $subscription_plan->amount,
+                    'payment_id' => '',
+                    'status' => CHECKOUT_INITIATED
+                ]);
+
+                throw_if(!$subscription_plan_payment, new Exception(__('messages.user.subscription_plans.create_subscription_failed')));
+
+                return $subscription_plan_payment;
+            });
+
+            return $user->newSubscription('default', $subscription_plan->api_id)->checkout([ 
+                'success_url' => route('user.payment.success').'?session_id={CHECKOUT_SESSION_ID}',
+                'cancel_url' => route('user.payment.cancel')."?subscription_plan_payment_id=$subscription_plan_payment->id",
+                'metadata' => [
+                    'subscription_plan_payment_id' => $subscription_plan_payment->id
+                ] 
+            ]);
 
         } catch(Exception $e) {
 

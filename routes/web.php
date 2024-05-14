@@ -7,6 +7,7 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\Auth\{RegisterController, LoginController};
 use App\Http\Controllers\User\Account\{UserProfileController, LogoutController};
 use App\Http\Controllers\User\{CheckoutController, SubscriptionPlanPaymentController};
+use App\Http\Controllers\PaymentStatusController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,11 +39,11 @@ Route::group(['as' => 'user.'], function() {
 
 		Route::post('initiate_checkout/{subscription_plan}', [CheckoutController::class, 'initiate_checkout'])->name('initiate_checkout');
 
-		Route::get('payment/{subscription_plan}', [CheckoutController::class, 'stripeForm'])->name('stripeForm');
+		// Route::get('payment/{subscription_plan}', [CheckoutController::class, 'stripeForm'])->name('stripeForm');
 
-		Route::post('checkout/{subscription_plan}', [CheckoutController::class, 'checkout'])->name('checkout');
+		// Route::post('checkout/{subscription_plan}', [CheckoutController::class, 'checkout'])->name('checkout');
 
-		Route::post('checkout/cancel/{subscription_plan}', [CheckoutController::class, 'checkoutCancel'])->name('checkout.cancel');
+		// Route::post('checkout/cancel/{subscription_plan}', [CheckoutController::class, 'checkoutCancel'])->name('checkout.cancel');
 
 		Route::resource('transactions', SubscriptionPlanPaymentController::class)->only(['index', 'show'])->scoped([
 			'transaction' => 'unique_id'
@@ -50,4 +51,8 @@ Route::group(['as' => 'user.'], function() {
 
 		Route::get('logout', LogoutController::class)->name('logout');
 	});
+
+	Route::get('payment-success', [PaymentStatusController::class, 'success'])->name('payment.success');
+
+	Route::get('payment-cancel', [PaymentStatusController::class, 'cancel'])->name('payment.cancel');
 });
